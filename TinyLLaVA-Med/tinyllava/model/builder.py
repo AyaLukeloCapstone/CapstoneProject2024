@@ -43,7 +43,6 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
     else:
         kwargs['torch_dtype'] = torch.float16
 
-    # print("Model name: ",model_name.lower())
     # if 'tinyllava' in model_name.lower():
     # Load LLaVA model
     if 'lora' in model_name.lower() and model_base is None:

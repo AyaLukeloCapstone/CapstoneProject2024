@@ -195,11 +195,6 @@ def train():
     rank0_print("trainable parameters: ", sum(p.numel() for p in model.parameters() if p.requires_grad))
     rank0_print("total parameters: ", sum(p.numel() for p in model.parameters()))
 
-    #add code for loading the teacher:
-    #name it teacher model
-    #import modules from LLavaCasual and other packages for loading the teacher model
-    #
-
     trainer = LLaVATrainer(model=model,
                            tokenizer=tokenizer,
                            args=training_args,
@@ -210,11 +205,11 @@ def train():
         trainer.train()
 
     trainer.save_state()
-    # model.config.use_cache = True
-    # if training_args.lora_enable:
-    #     lora_save_model(model, training_args)
-    # else:
-    safe_save_model_for_hf_trainer(trainer=trainer,
+    model.config.use_cache = True
+    if training_args.lora_enable:
+        lora_save_model(model, training_args)
+    else:
+        safe_save_model_for_hf_trainer(trainer=trainer,
                                        output_dir=training_args.output_dir)
 
 if __name__ == "__main__":

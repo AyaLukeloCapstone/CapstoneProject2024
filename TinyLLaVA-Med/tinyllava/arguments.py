@@ -32,7 +32,6 @@ class DataArguments:
                            metadata={"help": "Path to the training data."})
     lazy_preprocess: bool = False
     is_multimodal: bool = False
-    image_token_len: int = 256
     image_folder: Optional[str] = field(default=None)
     image_aspect_ratio: str = 'pad'
 
